@@ -20,10 +20,9 @@ const intercept = () => {
                     // Get folder name safely
                     let name;
                     if (json.rootFolder) {
-                        const parts = json.rootFolder.split('/');
-                        name = parts[parts.length - 1] || parts[parts.length - 2] || 'root';
-                    } else if (json.ListData.Row?.[0]?.FileLeafRef) {
-                        name = json.ListData.Row[0].FileLeafRef;
+                        name = json.rootFolder
+                    } else if (json.ListData.Row?.[0]?.FileRef) {
+                        name = json.ListData.Row[0].FileRef;
                     } else {
                         name = 'unknown';
                     }
