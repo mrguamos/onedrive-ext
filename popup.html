@@ -9,6 +9,24 @@
             margin: 0;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
         }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        .clear-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .clear-btn:hover {
+            background: #c82333;
+        }
         #items {
             display: flex;
             flex-direction: column;
@@ -43,6 +61,10 @@
     </style>
 </head>
 <body>
+    <div class="header">
+        <h2 style="margin: 0">Folder IDs</h2>
+        <button id="clearBtn" class="clear-btn">Clear All</button>
+    </div>
     <div id="items">
         <div class="empty-state">Waiting for folder data...</div>
     </div>
