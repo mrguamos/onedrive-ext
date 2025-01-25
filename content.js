@@ -8,6 +8,11 @@ function addLog(message) {
   if (logs.length > 100) logs.shift();
 }
 
+// Add this at the beginning of the file
+window.onbeforeunload = function() {
+    // Only clear the items array instead of all storage
+    chrome.storage.local.set({ items: [] });
+};
 
 // Function to inject the script
 function injectScript() {
