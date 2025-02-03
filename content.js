@@ -1,17 +1,17 @@
 // Store items for popup
 let items = [];
 
-function addLog(message) {
-  const timestamp = new Date().toLocaleTimeString();
-  logs.push(`[${timestamp}] ${message}`);
-  // Keep only last 100 logs
-  if (logs.length > 100) logs.shift();
-}
-
 // Add this at the beginning of the file
 window.onbeforeunload = function() {
-    // Only clear the items array instead of all storage
-    chrome.storage.local.set({ items: [] });
+    try {
+        if (chrome?.storage?.local) {
+            chrome.storage.local.set({ items: [] }).catch(() => {
+                // Silently fail if extension context is invalid
+            });
+        }
+    } catch (error) {
+        // Ignore errors during page unload
+    }
 };
 
 // Function to inject the script
