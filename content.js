@@ -31,9 +31,15 @@ function injectScript() {
     (document.head || document.documentElement).appendChild(script);
 }
 
-// Inject as soon as possible
+// Initial injection
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', injectScript);
 } else {
     injectScript();
 }
+
+// Reattach script when DOM is fully loaded
+document.addEventListener('DOMContentLoaded', () => {
+    // Small delay to ensure previous script execution is complete
+    setTimeout(injectScript, 1000);
+});
