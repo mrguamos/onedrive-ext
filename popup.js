@@ -19,11 +19,6 @@ function createItemElement(item) {
     return itemDiv;
 }
 
-function addItem(data) {
-    const itemDiv = createItemElement(data);
-    itemsDiv.insertBefore(itemDiv, itemsDiv.firstChild);
-}
-
 // Load items directly from storage when popup opens
 async function loadItems() {
     try {
@@ -31,7 +26,10 @@ async function loadItems() {
         
         if (items.length > 0) {
             itemsDiv.innerHTML = ''; // Clear waiting message
-            items.forEach(addItem);
+            items.forEach(item => {
+                const itemDiv = createItemElement(item);
+                itemsDiv.insertBefore(itemDiv, itemsDiv.firstChild);
+            });
         } else {
             itemsDiv.innerHTML = '<div class="empty-state">No items found. Navigate to a folder.</div>';
         }

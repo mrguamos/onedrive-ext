@@ -1,6 +1,3 @@
-// Store items for popup
-let items = [];
-
 // Add this at the beginning of the file
 window.onbeforeunload = function() {
     try {
