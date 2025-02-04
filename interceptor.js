@@ -38,10 +38,6 @@ const intercept = () => {
                             }
                         }, '*');
                     }
-                    console.log({
-                        name,
-                        id: matches[1]
-                    })
                 } catch(err) {
                     console.error('XHR parse error:', err);
                 }

@@ -26,20 +26,13 @@ window.addEventListener('message', async (event) => {
 
 // Inject script
 function injectScript() {
-    const script = document.createElement('script');
-    script.src = chrome.runtime.getURL('interceptor.js');
-    (document.head || document.documentElement).appendChild(script);
+    // Only inject if not already present
+    if (!document.querySelector('script[src*="interceptor.js"]')) {
+        const script = document.createElement('script');
+        script.src = chrome.runtime.getURL('interceptor.js');
+        (document.head || document.documentElement).appendChild(script);
+    }
 }
 
-// Initial injection
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', injectScript);
-} else {
-    injectScript();
-}
-
-// Reattach script when DOM is fully loaded
-document.addEventListener('DOMContentLoaded', () => {
-    // Small delay to ensure previous script execution is complete
-    setTimeout(injectScript, 1000);
-});
+// Immediate injection
+injectScript();
